@@ -43,17 +43,20 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
-      <div className="max-w-3xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-xl p-10">
-          <h1 className="text-4xl font-bold text-center text-gray-800 mb-12">
+    <div style={{ minHeight: '100vh', padding: 'var(--space-12) var(--space-4)' }}>
+      <div className="container">
+        <div className="card card-hover">
+          <h1 className="heading-1 text-center text-gradient">
             AI Career Roadmap Generator
           </h1>
+          <p className="text-muted text-center">
+            Get personalized career guidance powered by AI. Enter your details below to receive a tailored roadmap for your professional growth.
+          </p>
           
-          <div className="space-y-8">
+          <div>
             {/* Years of Experience */}
-            <div className="w-full">
-              <label htmlFor="experience" className="block text-base font-medium text-gray-700 mb-3">
+            <div className="form-group">
+              <label htmlFor="experience" className="form-label">
                 Years of Experience
               </label>
               <input
@@ -62,7 +65,7 @@ function App() {
                 name="experience"
                 value={formData.experience}
                 onChange={handleInputChange}
-                className="w-full px-5 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all text-lg"
+                className="form-input"
                 placeholder="e.g., 3"
                 min="0"
                 max="50"
@@ -70,8 +73,8 @@ function App() {
             </div>
 
             {/* Skills */}
-            <div className="w-full">
-              <label htmlFor="skills" className="block text-base font-medium text-gray-700 mb-3">
+            <div className="form-group">
+              <label htmlFor="skills" className="form-label">
                 Skills (comma separated)
               </label>
               <input
@@ -80,14 +83,14 @@ function App() {
                 name="skills"
                 value={formData.skills}
                 onChange={handleInputChange}
-                className="w-full px-5 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all text-lg"
-                placeholder="e.g., Java, Spring, MySQL"
+                className="form-input"
+                placeholder="e.g., Java, Spring Boot, MySQL, Docker"
               />
             </div>
 
             {/* Target Role */}
-            <div className="w-full">
-              <label htmlFor="targetRole" className="block text-base font-medium text-gray-700 mb-3">
+            <div className="form-group">
+              <label htmlFor="targetRole" className="form-label">
                 Target Role
               </label>
               <input
@@ -96,25 +99,25 @@ function App() {
                 name="targetRole"
                 value={formData.targetRole}
                 onChange={handleInputChange}
-                className="w-full px-5 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all text-lg"
+                className="form-input"
                 placeholder="e.g., Senior Backend Engineer"
               />
             </div>
 
             {/* Generate Button */}
-            <div className="pt-4">
+            <div style={{ paddingTop: 'var(--space-4)' }}>
               <button
                 onClick={generateRoadmap}
                 disabled={isLoading}
-                className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white font-semibold py-5 px-8 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none text-lg"
+                className="btn btn-primary"
               >
                 {isLoading ? (
-                  <div className="flex items-center justify-center">
-                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3"></div>
-                    Generating Roadmap...
-                  </div>
+                  <>
+                    <div className="spinner"></div>
+                    Generating Your Roadmap...
+                  </>
                 ) : (
-                  'Generate Roadmap'
+                  'Generate My Roadmap'
                 )}
               </button>
             </div>
@@ -123,13 +126,15 @@ function App() {
 
         {/* Roadmap Result - Separate centered card */}
         {roadmap && (
-          <div className="mt-10 bg-white rounded-2xl shadow-xl p-10 border-t-4 border-indigo-500">
-            <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">🚀 Your AI-Generated Roadmap</h3>
-              <p className="text-gray-600">Here's your personalized career development plan</p>
+          <div className="result-card">
+            <div className="text-center" style={{ marginBottom: 'var(--space-6)' }}>
+              <h3 className="heading-2">🚀 Your AI-Generated Roadmap</h3>
+              <p className="text-muted" style={{ marginBottom: 0 }}>
+                Here's your personalized career development plan
+              </p>
             </div>
-            <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-xl p-8">
-              <div className="text-gray-700 whitespace-pre-line leading-relaxed text-lg">
+            <div className="result-content">
+              <div className="result-text">
                 {roadmap}
               </div>
             </div>
